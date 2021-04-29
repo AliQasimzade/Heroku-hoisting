@@ -9,14 +9,14 @@ var cors = require("cors");
 app.use(cors());
 
 var firebaseConfig = {
-    apiKey: "AIzaSyBwE6VsuDodrixBsWn0nuAvBMAELAzR3b0",
-    authDomain: "dashboard-database-af1ec.firebaseapp.com",
-    projectId: "dashboard-database-af1ec",
-    storageBucket: "dashboard-database-af1ec.appspot.com",
-    messagingSenderId: "540361460565",
-    appId: "1:540361460565:web:68e55cb51f0b0624817ddc",
-    measurementId: "G-4F40NZ5Q6T"
-  };
+  apiKey: "AIzaSyBwE6VsuDodrixBsWn0nuAvBMAELAzR3b0",
+  authDomain: "dashboard-database-af1ec.firebaseapp.com",
+  projectId: "dashboard-database-af1ec",
+  storageBucket: "dashboard-database-af1ec.appspot.com",
+  messagingSenderId: "540361460565",
+  appId: "1:540361460565:web:68e55cb51f0b0624817ddc",
+  measurementId: "G-4F40NZ5Q6T"
+};
 
 firebase.initializeApp(firebaseConfig);
 
