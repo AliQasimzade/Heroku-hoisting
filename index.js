@@ -27,7 +27,7 @@ app.get("/getData", (req, res) => {
     .doc("6IWWfXYYe2jqsUCvQInA;")
     .get()
     .then((result) => {
-      console.log(result.data());
+      res.header("Access-Control-Allow-Origin","*");
       res.send(result.data());
     });
 });
