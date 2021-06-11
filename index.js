@@ -39,6 +39,7 @@ app.post("/users", (req, res) => {
   .doc("6IWWfXYYe2jqsUCvQInA")
   .get()
   .then((result) => { 
+    res.header("Access-Control-Allow-Origin", "*");
     res.send(result.data());
   });
   db.collection("data")
