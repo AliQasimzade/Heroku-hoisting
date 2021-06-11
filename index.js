@@ -35,10 +35,7 @@ app.get("/getData", (req, res) => {
 app.post("/users", (req, res) => {
   const data = req.body;
   console.log(data);
-  res.send({
-    success: "200 response",
-    res: "You are now just talked with server",
-  });
+  res.send(data);
   db.collection("data")
     .doc("6IWWfXYYe2jqsUCvQInA")
     .update({ List12: firebase.firestore.FieldValue.delete()  });
