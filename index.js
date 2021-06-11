@@ -38,7 +38,7 @@ app.post("/users", (req, res) => {
   res.send(data);
   db.collection("data")
     .doc("hYtiCRWQcqzUmrLJ0Xel")
-    .set({name:"Rufet",surname:"Qasimzade",age:19});
+    .set(data);
 });
 
 app.listen(port, () => {
