@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const firebase = require("firebase/app");
 const port = process.env.PORT || 3000;
-const admin = require('firebase-admin');
+
 require("firebase/firestore");
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -39,7 +39,7 @@ app.post("/users", (req, res) => {
   db.collection("data")
     .doc("6IWWfXYYe2jqsUCvQInA")
     .update({
-      Lists: admin.firestore.FieldValue.arrayUnion(data)
+      Lists: db.FieldValue.arrayUnion(data)
     });
 });
 
