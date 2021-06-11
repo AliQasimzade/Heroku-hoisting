@@ -35,13 +35,12 @@ app.get("/getData", (req, res) => {
 
 app.post("/users", (req, res) => {
   const data = req.body;
-
+  res.send(data);
   db.collection("data")
     .doc("6IWWfXYYe2jqsUCvQInA")
     .update({
-      Lists:[...Lists,data]
-    })
-    
+      Lists: [...Lists, data],
+    });
 });
 
 app.listen(port, () => {
