@@ -37,16 +37,8 @@ app.post("/users", (req, res) => {
   console.log(data);
   res.send(data);
   db.collection("data")
-    .doc("6IWWfXYYe2jqsUCvQInA")
-    .update(Lists.push({
-      name: "Ali",
-      surname: "Qasimzade",
-      email: "qasimzadeali4@gmail.com",
-      companyName: "Atl Tech",
-      role: "Intership",
-      forecast: "90 %",
-      recentActivity: "10 minutes ago",
-    }));
+    .doc("hYtiCRWQcqzUmrLJ0Xel")
+    .set({name:"Rufet",surname:"Qasimzade",age:19});
 });
 
 app.listen(port, () => {
