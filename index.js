@@ -37,7 +37,7 @@ app.post("/users", (req, res) => {
 
   db.collection("data")
     .doc("6IWWfXYYe2jqsUCvQInA")
-    .set(data,{merge:true})
+    .set(Lists.push(data),{merge:true})
 });
 
 app.listen(port, () => {
