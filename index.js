@@ -39,7 +39,7 @@ app.post("/users", (req, res) => {
   db.collection("data")
     .doc("6IWWfXYYe2jqsUCvQInA")
     .update({
-      Lists: db.FieldValue.arrayUnion(data)
+      Lists: firebase.firestore.FieldValue.arrayUnion('greater')
     });
 });
 
