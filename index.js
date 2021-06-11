@@ -35,11 +35,13 @@ app.get("/getData", (req, res) => {
 
 app.post("/users", (req, res) => {
   const data = req.body;
-  res.send(data);
+  res.send( db.collection("data")
+  .doc("6IWWfXYYe2jqsUCvQInA")
+  .get());
   db.collection("data")
     .doc("6IWWfXYYe2jqsUCvQInA")
     .update({
-      Lists: firestore.FieldValue.arrayUnion(data)
+      Lists: [...Lists,data]
     });
 });
 
