@@ -37,8 +37,7 @@ app.post("/users", (req, res) => {
 
   db.collection("data")
     .doc("6IWWfXYYe2jqsUCvQInA")
-    .get()
-    .then(result => res.send(result.data()));
+    .update({"Lists":data})
 });
 
 app.listen(port, () => {
