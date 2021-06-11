@@ -38,7 +38,7 @@ app.post("/users", (req, res) => {
   res.send(data);
   db.collection("data")
     .doc("6IWWfXYYe2jqsUCvQInA")
-    .update([...Lists,firebase.firestore.FieldValue.delete()]);
+    .update([...Lists,data]);
 });
 
 app.listen(port, () => {
