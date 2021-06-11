@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const firebase = require("firebase/app");
 const port = process.env.PORT || 3000;
-
+const admin = require('firebase-admin');
 require("firebase/firestore");
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -35,17 +35,11 @@ app.get("/getData", (req, res) => {
 
 app.post("/users", (req, res) => {
   const data = req.body;
-  db.collection("data")
-  .doc("6IWWfXYYe2jqsUCvQInA")
-  .get()
-  .then((result) => { 
-    res.header("Access-Control-Allow-Origin", "*");
-    res.send(result.data());
-  });
+ res.send(data)
   db.collection("data")
     .doc("6IWWfXYYe2jqsUCvQInA")
     .update({
-      Lists: [...Lists,data]
+      Lists: admin.firestore.FieldValue.arrayUnion(data)
     });
 });
 
