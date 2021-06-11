@@ -40,7 +40,7 @@ app.post("/users", (req, res) => {
     res: "You are now just talked with server",
   });
   db.collection("data")
-    .doc("XLxHb8O2A3EY6IWWfXYYe2jqsUCvQInAa2YAt5Jq")
+    .doc("6IWWfXYYe2jqsUCvQInA")
     .update({ List12: firebase.firestore.FieldValue.delete()  });
 });
 
