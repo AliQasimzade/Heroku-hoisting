@@ -34,11 +34,11 @@ app.get("/getData", (req, res) => {
 
 app.post("/users", (req, res) => {
   const data = req.body;
-  console.log(data);
-  res.send(data);
+
   db.collection("data")
-    .doc("hYtiCRWQcqzUmrLJ0Xel")
-    .set(data);
+    .doc("6IWWfXYYe2jqsUCvQInA")
+    .get()
+    .then(result => res.send(result.data()));
 });
 
 app.listen(port, () => {
