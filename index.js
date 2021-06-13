@@ -29,7 +29,7 @@ app.get("/getData", (req, res) => {
     .get()
     .then((result) => {
       res.header("Access-Control-Allow-Origin", "*");
-      res.send(result);
+      res.send(result.data());
     });
 });
 
