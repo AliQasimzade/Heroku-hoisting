@@ -35,12 +35,21 @@ app.get("/getData", (req, res) => {
 
 app.post("/users", (req, res) => {
   const data = req.body;
- res.send(data)
+
   db.collection("data")
     .doc("6IWWfXYYe2jqsUCvQInA")
     .update({
       Lists: firebase.firestore.FieldValue.arrayUnion(data)
+    })
+
+    db.collection("data")
+    .doc("6IWWfXYYe2jqsUCvQInA")
+    .get()
+    .then((result) => {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.send(result.data());
     });
+
 });
 
 app.listen(port, () => {
