@@ -42,15 +42,7 @@ app.post("/users", (req, res) => {
       Lists: firebase.firestore.FieldValue.arrayUnion(data)
     });
 
-    setTimeout(() => {
-      db.collection("data")
-      .doc("6IWWfXYYe2jqsUCvQInA")
-      .get()
-      .then((result) => {
-        res.header("Access-Control-Allow-Origin", "*");
-        res.send(result.data());
-      })
-    },300)
+    res.send(data)
     
 });
 
