@@ -33,6 +33,16 @@ app.get("/getData", (req, res) => {
     });
 });
 
+app.get("/getChart", (req,res) =>{
+  db.collection("data")
+  .doc("V29jI79tvIjrPcFSEZfg")
+  .get()
+  .then((result) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.send(result.data())
+  })
+})
+
 app.post("/users", (req, res) => {
   const data = req.body;
 
@@ -45,6 +55,7 @@ app.post("/users", (req, res) => {
     res.send(data)
     
 });
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
