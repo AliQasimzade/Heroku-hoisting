@@ -43,6 +43,16 @@ app.get("/getChart", (req,res) =>{
   })
 })
 
+app.get("/getTaskChart", (req,res) =>{
+  db.collection("data")
+  .doc("V29jI79tvIjrPcFSEZfg")
+  .get()
+  .then(result => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.send(result.data())
+  })
+})
+
 app.post("/users", (req, res) => {
   const data = req.body;
 
