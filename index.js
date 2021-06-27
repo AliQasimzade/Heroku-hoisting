@@ -71,8 +71,8 @@ app.post("/edituser", (req, res) => {
 
   db.collection("data")
     .doc("V29jI79tvIjrPcFSEZfg")
-    .update({
-      Table: firebase.firestore.FieldValue.arrayRemove(data)
+    .set({
+      Table: firebase.firestore.FieldValue.arrayUnion(data)
     });
 
     res.send(data)
