@@ -70,9 +70,9 @@ app.post("/deleteuser", (req, res) => {
   const data = req.body;
 
   db.collection("data")
-    .doc("V29jI79tvIjrPcFSEZfg")
+    .doc("6IWWfXYYe2jqsUCvQInA")
     .update({
-      Table: firebase.firestore.FieldValue.arrayRemove(data)
+      Lists: firebase.firestore.FieldValue.arrayRemove(data)
     });
 
     res.send(data)
