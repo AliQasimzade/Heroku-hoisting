@@ -69,11 +69,11 @@ app.post("/users", (req, res) => {
 app.post("/edituser", (req, res) => {
   const data = req.body;
 
-  // db.collection("data")
-  //   .doc("V29jI79tvIjrPcFSEZfg")
-  //   .set({
-  //     Table: firebase.firestore.FieldValue.arrayUnion(data.ind)
-  //   });
+  db.collection("data")
+    .doc("V29jI79tvIjrPcFSEZfg")
+    .set({
+      Table: firebase.firestore.FieldValue.arrayUnion(data.index).data.name
+    });
 
     res.send(data)
     
