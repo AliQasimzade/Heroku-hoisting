@@ -35,7 +35,7 @@ app.get("/getData", (req, res) => {
 
 app.get("/getChart", (req,res) =>{
   db.collection("data")
-  .doc("V29jI79tvIjrPcFSEZfg")
+  .orderBy("Lists",'asc')
   .get()
   .then((result) => {
     res.header("Access-Control-Allow-Origin", "*");
