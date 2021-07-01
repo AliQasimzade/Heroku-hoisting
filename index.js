@@ -23,6 +23,7 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
 
+
 app.get("/getData", (req, res) => {
   db.collection("data")
     .doc("6IWWfXYYe2jqsUCvQInA")
@@ -54,13 +55,9 @@ app.get("/getTaskChart", (req,res) =>{
 })
 
 app.get("/chart", (req,res) => {
-  db.collection("data")
-  .doc("pSZcgVOAyNHJTojgvzgn")
-  .get()
-  .then(result => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.send(result)
-  })
+  
+const ref = firebase.database()
+res.send(ref)
 })
 
 app.post("/users", (req, res) => {
