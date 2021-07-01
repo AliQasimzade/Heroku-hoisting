@@ -35,7 +35,7 @@ app.get("/getData", (req, res) => {
 
 app.get("/getChart", (req,res) =>{
   db.collection("data")
-  .orderBy("Lists",'asc')
+  .doc("V29jI79tvIjrPcFSEZfg")
   .get()
   .then((result) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -46,6 +46,7 @@ app.get("/getChart", (req,res) =>{
 app.get("/getTaskChart", (req,res) =>{
   db.collection("data")
   .doc("V29jI79tvIjrPcFSEZfg")
+  .orderBy("chart")
   .get()
   .then(result => {
     res.header("Access-Control-Allow-Origin", "*");
