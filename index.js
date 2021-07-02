@@ -39,12 +39,14 @@ app.get("/getData", (req, res) => {
 });
 
 app.get("/chart", (req,res) => {
- 
-  let data = database.ref("Sidebar/" + "0").on('value',function(snapshot){
-    snapshot.val()
+
+
+  database.ref("Sidebar/" + "0").on('value',function(snapshot){
+   res.send(snapshot.val())
+   console.log(snapshot.val())
   })
 
-  res.send(data)
+  
 })
 
 app.post("/users", (req, res) => {
