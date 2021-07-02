@@ -1,9 +1,9 @@
 const express = require("express");
 const app = express();
-const firebase = require("firebase/database");
+const firebase = require("firebase/app");
 const port = process.env.PORT || 3000;
 
-require("firebase/firestore");
+require("firebase/database");
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 var cors = require("cors");
@@ -21,39 +21,19 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-const db = firebase.firestore();
+// const db = firebase.firestore();
 
 const database = firebase.database();
 
-app.get("/getData", (req, res) => {
-  db.collection("data")
-    .doc("6IWWfXYYe2jqsUCvQInA")
-    .get()
-    .then((result) => {
-      res.header("Access-Control-Allow-Origin", "*");
-      res.send(result.data());
-    });
-});
-
-app.get("/getChart", (req,res) =>{
-  db.collection("data")
-  .doc("V29jI79tvIjrPcFSEZfg")
-  .get()
-  .then((result) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.send(result.data())
-  })
-})
-
-app.get("/getTaskChart", (req,res) =>{
-  db.collection("data")
-  .doc("V29jI79tvIjrPcFSEZfg")
-  .get()
-  .then(result => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.send(result.data())
-  })
-})
+// app.get("/getData", (req, res) => {
+//   db.collection("data")
+//     .doc("6IWWfXYYe2jqsUCvQInA")
+//     .get()
+//     .then((result) => {
+//       res.header("Access-Control-Allow-Origin", "*");
+//       res.send(result.data());
+//     });
+// });
 
 app.get("/chart", (req,res) => {
  
@@ -64,39 +44,31 @@ app.get("/chart", (req,res) => {
   })
 })
 
-app.post("/users", (req, res) => {
-  const data = req.body;
+// app.post("/users", (req, res) => {
+//   const data = req.body;
 
-  db.collection("data")
-    .doc("6IWWfXYYe2jqsUCvQInA")
-    .update({
-      Lists: firebase.firestore.FieldValue.arrayUnion(data)
-    })
+//   db.collection("data")
+//     .doc("6IWWfXYYe2jqsUCvQInA")
+//     .update({
+//       Lists: firebase.firestore.FieldValue.arrayUnion(data)
+//     })
 
-    db.collection("data")
-    .doc("6IWWfXYYe2jqsUCvQInA")
-    .get()
-    .then((result) => {
-      res.header("Access-Control-Allow-Origin", "*");
-      res.send(result.data());
-    });
-
-    res.send(data)
+//     res.send(data)
     
-});
+// });
 
-app.post("/deleteuser", (req, res) => {
-  const data = req.body;
+// app.post("/deleteuser", (req, res) => {
+//   const data = req.body;
 
-  db.collection("data")
-    .doc("6IWWfXYYe2jqsUCvQInA")
-    .update({
-      Lists: firebase.firestore.FieldValue.arrayRemove(data)
-    });
+//   db.collection("data")
+//     .doc("6IWWfXYYe2jqsUCvQInA")
+//     .update({
+//       Lists: firebase.firestore.FieldValue.arrayRemove(data)
+//     });
 
-    res.send(data)
+//     res.send(data)
     
-});
+// });
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
