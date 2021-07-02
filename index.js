@@ -57,7 +57,7 @@ app.get("/getTaskChart", (req,res) =>{
 
 app.get("/chart", (req,res) => {
  
-  let use_ref = database.ref("Sidebar")
+  let use_ref = database.ref("Sidebar/" + '0')
   user_ref.on('value', function(snapshot){
     let data = snapshot.val()
     res.send(data)
