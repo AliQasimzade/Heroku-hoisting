@@ -3,7 +3,6 @@ const app = express();
 const firebase = require("firebase");
 const port = process.env.PORT || 3000;
 
-require("firebase/database");
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 var cors = require("cors");
