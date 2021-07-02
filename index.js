@@ -12,6 +12,7 @@ app.use(cors({ origin: "*" }));
 var firebaseConfig = {
   apiKey: "AIzaSyBwE6VsuDodrixBsWn0nuAvBMAELAzR3b0",
   authDomain: "dashboard-database-af1ec.firebaseapp.com",
+  databaseURL: "https://dashboard-database-af1ec-default-rtdb.firebaseio.com",
   projectId: "dashboard-database-af1ec",
   storageBucket: "dashboard-database-af1ec.appspot.com",
   messagingSenderId: "540361460565",
