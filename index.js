@@ -23,6 +23,8 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
 
+const database = firebase.database();
+
 app.get("/getData", (req, res) => {
   db.collection("data")
     .doc("6IWWfXYYe2jqsUCvQInA")
@@ -53,15 +55,13 @@ app.get("/getTaskChart", (req,res) =>{
   })
 })
 
-app.post("/chart", (req,res) => {
-  const data = req.body;
-  firebase.database().ref('users/' + data.userId).set({
-    username: data.name,
-    email: data.email,
-  });
-
-  res.send(data)
-  
+app.get("/chart", (req,res) => {
+ 
+  let use_ref = database.ref("Sidebar")
+  user_ref.on('value', function(snapshot){
+    let data = snapshot.val()
+    res.send(data)
+  })
 })
 
 app.post("/users", (req, res) => {
