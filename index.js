@@ -40,7 +40,7 @@ app.get("/getData", (req, res) => {
 
 app.get("/chart", (req,res) => {
  
-  let data = database.ref("Sidebar/" + "0" + ".json")
+  let data = database.ref("Sidebar/" + "0")
 
   res.send(data)
 })
