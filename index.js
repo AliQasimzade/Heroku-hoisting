@@ -54,7 +54,7 @@ app.get("/getTaskChart", (req,res) =>{
 })
 
 app.post("/chart", (req,res) => {
-  const data = req.body
+  const data = req.body;
   firebase.database().ref('users/' + data.userId).set({
     username: data.name,
     email: data.email,
