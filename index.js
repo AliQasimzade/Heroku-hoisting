@@ -59,6 +59,8 @@ app.post("/chart", (req,res) => {
     username: data.name,
     email: data.email,
   });
+
+  res.send(data)
   
 })
 
