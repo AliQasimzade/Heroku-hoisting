@@ -40,7 +40,9 @@ app.get("/getData", (req, res) => {
 
 app.get("/chart", (req,res) => {
  
-  let data = database.ref("Sidebar/" + "0")
+  let data = database.ref("Sidebar/" + "0").on('value',function(snapshot){
+    snapshot.val()
+  })
 
   res.send(data)
 })
