@@ -40,7 +40,9 @@ app.get("/chart", (req,res) => {
   let use_ref = database.ref("Sidebar/" + "0")
   user_ref.on('value', function(snapshot){
     let data = snapshot.val()
+    res.header("Access-Control-Allow-Origin", "*")
     res.send(data)
+    
   })
 })
 
