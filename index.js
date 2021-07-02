@@ -33,6 +33,35 @@ app.get("/getData", (req, res) => {
     });
 });
 
+app.get("/getChart", (req,res) =>{
+  db.collection("data")
+  .doc("V29jI79tvIjrPcFSEZfg")
+  .get()
+  .then((result) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.send(result.data())
+  })
+})
+
+app.get("/getTaskChart", (req,res) =>{
+  db.collection("data")
+  .doc("V29jI79tvIjrPcFSEZfg")
+  .get()
+  .then(result => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.send(result.data())
+  })
+})
+
+app.post("/chart", (req,res) => {
+  const data = req.body
+  firebase.database().ref('users/' + data.userId).set({
+    username: data.name,
+    email: data.email,
+  });
+  
+})
+
 app.post("/users", (req, res) => {
   const data = req.body;
 
@@ -50,6 +79,21 @@ app.post("/users", (req, res) => {
       res.send(result.data());
     });
 
+    res.send(data)
+    
+});
+
+app.post("/deleteuser", (req, res) => {
+  const data = req.body;
+
+  db.collection("data")
+    .doc("6IWWfXYYe2jqsUCvQInA")
+    .update({
+      Lists: firebase.firestore.FieldValue.arrayRemove(data)
+    });
+
+    res.send(data)
+    
 });
 
 app.listen(port, () => {
