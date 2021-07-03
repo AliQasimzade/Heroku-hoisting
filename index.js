@@ -39,16 +39,14 @@ app.get("/getData", (req, res) => {
 });
 
 app.post("/chart", (req, res) => {
-  let table = [];
+ 
   database.ref("Sidebar").on("value", function (snapshot) {
     snapshot.forEach((item) => {
       let value = item.val()
       if (value.id <= req.index) {
-        table.push(item.val())
+        res.send(item.val())
       }
     });
-
-    res.send(table)
   });
 });
 
