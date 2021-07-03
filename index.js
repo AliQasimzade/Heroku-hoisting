@@ -45,7 +45,7 @@ app.post("/chart", (req, res) => {
     snap.forEach(function(childsnap) {
       let allId = Number(childsnap.key)
      if(allId < req.body.index){
-      table.push(allId)
+      table.push(childsnap.val())
      }
 
     })
