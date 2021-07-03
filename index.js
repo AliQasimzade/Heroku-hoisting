@@ -41,12 +41,8 @@ app.get("/getData", (req, res) => {
 app.post("/chart", (req, res) => {
  
   database.ref("Sidebar").on("value", function (snapshot) {
-    snapshot.forEach((item) => {
-      let value = item.val()
-      if (value.id <= req.index) {
-        res.send(item.val())
-      }
-    });
+    let table = snapshot.slice(0, req.index)
+    res.send(table)
   });
 });
 
