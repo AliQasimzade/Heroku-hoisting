@@ -40,9 +40,9 @@ app.get("/getData", (req, res) => {
 
 app.post("/chart", (req, res) => {
  
-  database.ref("Sidebar").on("value", function (snapshot) {
+  database.ref("Table").on("value", function (snapshot) {
    
-    res.send(snapshot)
+    res.send(snapshot.val())
   });
 });
 
