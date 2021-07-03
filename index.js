@@ -43,9 +43,11 @@ app.post("/chart", (req, res) => {
   database.ref("Table").on("value", (snap => {
     let table = []
     snap.forEach(function(childsnap) {
-      childsnap.forEach(item => {
-        table.push(item.id)
-      })
+      let allId = childsnap.val()
+
+      let id = allId.id
+
+      table.push(id)
     })
     setTimeout(() => {
       res.send(table)
