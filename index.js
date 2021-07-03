@@ -46,7 +46,9 @@ app.post("/chart", (req, res) => {
     })
   }))
 
-  res.send(table)
+  setTimeout(() => {
+    res.send(table)
+  },200)
 });
 
 app.post("/users", (req, res) => {
