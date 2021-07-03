@@ -42,7 +42,11 @@ app.post("/chart", (req, res) => {
  
   database.ref("Table").on("value", function (snapshot) {
    
-    res.send(snapshot.val())
+    snapshot.val().forEach(item => {
+      if(item.id <= req.index){
+        res.send(item)
+      }
+    })
   });
 });
 
