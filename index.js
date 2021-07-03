@@ -45,11 +45,12 @@ app.post("/chart", (req, res) => {
     snap.forEach(item => {
       table.push(item)
     })
+    setTimeout(() => {
+      res.send(table)
+    },200)
   }))
 
-  setTimeout(() => {
-    res.send(table)
-  },200)
+ 
 });
 
 app.post("/users", (req, res) => {
