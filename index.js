@@ -1,9 +1,11 @@
 const express = require("express");
 const app = express();
-const firebase = require("firebase/app");
+const firebase = require("firebase");
 const port = process.env.PORT || 3000;
 
 require("firebase/firestore");
+require("firebase/database");
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 var cors = require("cors");
@@ -12,6 +14,7 @@ app.use(cors({ origin: "*" }));
 var firebaseConfig = {
   apiKey: "AIzaSyBwE6VsuDodrixBsWn0nuAvBMAELAzR3b0",
   authDomain: "dashboard-database-af1ec.firebaseapp.com",
+  databaseURL: "https://dashboard-database-af1ec-default-rtdb.firebaseio.com",
   projectId: "dashboard-database-af1ec",
   storageBucket: "dashboard-database-af1ec.appspot.com",
   messagingSenderId: "540361460565",
@@ -23,6 +26,8 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
 
+const database = firebase.database();
+
 app.get("/getData", (req, res) => {
   db.collection("data")
     .doc("6IWWfXYYe2jqsUCvQInA")
@@ -33,23 +38,13 @@ app.get("/getData", (req, res) => {
     });
 });
 
-app.get("/getChart", (req,res) =>{
-  db.collection("data")
-  .doc("V29jI79tvIjrPcFSEZfg")
-  .get()
-  .then((result) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.send(result.data())
-  })
-})
-
-app.get("/getTaskChart", (req,res) =>{
-  db.collection("data")
-  .doc("V29jI79tvIjrPcFSEZfg")
-  .get()
-  .then(result => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.send(result.data())
+app.post("/chart", (req,res) => {
+  database.ref("Sidebar").on('value',function(snapshot){
+   snapshot.forEach(item => {
+     if(item <= req.index){
+       res.send(item.val())
+     }
+   })
   })
 })
 
@@ -60,27 +55,24 @@ app.post("/users", (req, res) => {
     .doc("6IWWfXYYe2jqsUCvQInA")
     .update({
       Lists: firebase.firestore.FieldValue.arrayUnion(data)
-    });
+    })
 
     res.send(data)
     
 });
 
-app.post("/edituser", (req, res) => {
+app.post("/deleteuser", (req, res) => {
   const data = req.body;
 
   db.collection("data")
-    .doc("V29jI79tvIjrPcFSEZfg")
-    .set({
-      Table:firebase.firestore.FieldValue.arrayUnion(data.index.data.name)
+    .doc("6IWWfXYYe2jqsUCvQInA")
+    .update({
+      Lists: firebase.firestore.FieldValue.arrayRemove(data)
     });
 
     res.send(data)
     
 });
-
-
-
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
