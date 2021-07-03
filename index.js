@@ -48,7 +48,8 @@ app.post("/chart", (req, res) => {
       }
     });
     setTimeout(() => {
-      res.send(table,req.body);
+      res.send(table);
+      console.log(req.body)
     }, 200);
   });
 });
