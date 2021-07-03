@@ -43,7 +43,7 @@ app.post("/chart", (req, res) => {
   database.ref("Table").on("value", function (snapshot) {
 
 
-    res.send(snapshot.val()[req.index])
+    res.send(snapshot.val(req.index))
   });
 });
 
