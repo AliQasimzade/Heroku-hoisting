@@ -38,15 +38,17 @@ app.get("/getData", (req, res) => {
     });
 });
 
-app.get("/chart", (req,res) => {
-
-  database.ref("Sidebar").on('value',function(snapshot){
-   res.send(snapshot.val())
-   console.log(snapshot.val())
-  })
-
-  
-})
+app.post("/chart", (req, res) => {
+  let table = [];
+  database.ref("Sidebar").on("value", function (snapshot) {
+    snapshot.forEach((item) => {
+      let value = item.val()
+      if (value.id <= req.index) {
+        table.push(item.val())
+      }
+    });
+  });
+});
 
 app.post("/users", (req, res) => {
   const data = req.body;
@@ -54,11 +56,10 @@ app.post("/users", (req, res) => {
   db.collection("data")
     .doc("6IWWfXYYe2jqsUCvQInA")
     .update({
-      Lists: firebase.firestore.FieldValue.arrayUnion(data)
-    })
+      Lists: firebase.firestore.FieldValue.arrayUnion(data),
+    });
 
-    res.send(data)
-    
+  res.send(data);
 });
 
 app.post("/deleteuser", (req, res) => {
@@ -67,11 +68,10 @@ app.post("/deleteuser", (req, res) => {
   db.collection("data")
     .doc("6IWWfXYYe2jqsUCvQInA")
     .update({
-      Lists: firebase.firestore.FieldValue.arrayRemove(data)
+      Lists: firebase.firestore.FieldValue.arrayRemove(data),
     });
 
-    res.send(data)
-    
+  res.send(data);
 });
 
 app.listen(port, () => {
