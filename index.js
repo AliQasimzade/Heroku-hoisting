@@ -44,7 +44,9 @@ app.post("/chart", (req, res) => {
     let table = []
     snap.forEach(function(childsnap) {
       let allId = Number(childsnap.key)
-      table = allId.filter(item => item < req.index )
+     if(allId < req.index){
+       table.push(allId)
+     }
 
     })
     setTimeout(() => {
