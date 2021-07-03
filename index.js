@@ -41,10 +41,9 @@ app.get("/getData", (req, res) => {
 app.post("/chart", (req, res) => {
  
   database.ref("Table").on("value", function (snapshot) {
- 
-    let tab = snapshot.slice(0, req.index)
 
-    res.send(tab)
+
+    res.send(snapshot)
   });
 });
 
