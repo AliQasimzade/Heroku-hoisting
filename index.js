@@ -47,6 +47,8 @@ app.post("/chart", (req, res) => {
         table.push(item.val())
       }
     });
+
+    res.send(table)
   });
 });
 
