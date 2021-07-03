@@ -44,14 +44,14 @@ app.post("/chart", (req, res) => {
     let table = []
     snap.forEach(function(childsnap) {
       let allId = Number(childsnap.key)
-     if(allId < req.index){
-       res.send(allId)
+     if(allId < req.data.index){
+      table.push(allId)
      }
 
     })
-    // setTimeout(() => {
-    //   res.send(table)
-    // },200)
+    setTimeout(() => {
+      res.send(table)
+    },200)
   }))
 
  
