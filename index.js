@@ -39,8 +39,9 @@ app.get("/getData", (req, res) => {
 });
 
 app.post("/chart", (req, res) => {
- let table = []
+ 
   database.ref("Table").on("value", (snap => {
+    let table = []
     snap.forEach(item => {
       table.push(item)
     })
