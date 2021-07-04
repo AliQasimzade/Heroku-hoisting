@@ -47,10 +47,7 @@ app.post("/chart", (req, res) => {
         table.push(childsnap.val());
       }
     });
-    setTimeout(() => {
       res.send(table);
-      console.log(req.body)
-    }, 200);
   });
 });
 
