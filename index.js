@@ -52,9 +52,14 @@ app.post("/chart", (req, res) => {
 });
 
 app.post("/update", (req, res) => {
-  const data = JSON.parse(req.body);
+  const data = req.body;
 
-  database.ref("users/").set(data);
+  database.ref("users/" + data.id).update({
+   name:data.name,
+   email:data.email,
+   surname:data.surname,
+   id:data.id
+  });
   res.send(data);
 });
 
