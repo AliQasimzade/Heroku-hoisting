@@ -47,18 +47,19 @@ app.post("/chart", (req, res) => {
         table.push(childsnap.val());
       }
     });
-      res.send(table);
+    res.send(table);
   });
 });
 
-app.post("/update", (req,res) => {
+app.post("/update", (req, res) => {
   const data = req.body;
-  const newPostKey = database.ref("Table").child("0").push().key();
-  let updates = {}
-  updates['/0/' + newPostKey] = data;
-
-  database.ref("Table").update(updates)
-})
+  const newPostKey = database.ref().child("Table").push().key();
+  let updates = {};
+  updates["/Table/" + newPostKey] = data;
+  updates["/Table/" + data.id + newPostKey] = data;
+  database.ref().update(updates);
+  res.send(updates);
+});
 
 app.post("/users", (req, res) => {
   const data = req.body;
