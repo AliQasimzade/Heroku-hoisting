@@ -53,9 +53,8 @@ app.post("/chart", (req, res) => {
 
 app.post("/update", (req, res) => {
   const data = req.body;
-  const newPostKey = database.ref().child().push().key
- database.ref("Table/" + 0).set(data)
- res.send(data)
+  database.ref("Table/" + data.id).update(data);
+  res.send(data);
 });
 
 app.post("/users", (req, res) => {
