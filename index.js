@@ -53,7 +53,7 @@ app.post("/chart", (req, res) => {
 
 app.post("/update", (req, res) => {
   const data = req.body;
-  database.ref("Table/" + data.id).update({
+  database.ref("Table").update({
    name:data.name,
    email:data.email,
    surname:data.surname,
