@@ -53,7 +53,7 @@ app.post("/chart", (req, res) => {
 
 app.post("/update", (req,res) => {
   const data = req.body;
-  const newPostKey = database.ref("Table").chid().push().key();
+  const newPostKey = database.ref("Table").child().push().key();
   let updates = {}
   updates[newPostKey] = data;
   database.ref("Table").update(updates)
