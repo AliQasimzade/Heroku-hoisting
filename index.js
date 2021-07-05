@@ -51,6 +51,15 @@ app.post("/chart", (req, res) => {
   });
 });
 
+app.post("/update", (req,res) => {
+  const data = req.body;
+
+  const newPostKey = firebase.database().ref("Table").push().key();
+  const updates = {}
+  updates[newPostKey] = data;
+  firebase.database().ref("Table").update(updates)
+})
+
 app.post("/users", (req, res) => {
   const data = req.body;
 
