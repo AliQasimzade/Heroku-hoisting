@@ -38,27 +38,35 @@ app.get("/getData", (req, res) => {
     });
 });
 
-app.post("/chart", (req,res) => {
-  database.ref("Sidebar").on('value',function(snapshot){
-   snapshot.forEach(item => {
-     if(item <= req.index){
-       res.send(item.val())
-     }
-   })
-  })
-})
+app.post("/chart", (req, res) => {
+  let table = [];
+  database.ref("Sidebar").on("value", function (snapshot) {
+    snapshot.forEach((item) => {
+      if (item <= req.index) {
+        table.push(item.val());
+      }
+    });
 
+    res.send(table);
+  });
+});
+app.post("/update", (req, res) => {
+  const data = req.body;
+  const newPostKey = firebase.database().ref("Table").push().key;
+  const updates = {};
+  updates[newPostKey] = data;
+  firebase.database().ref().update(updates);
+});
 app.post("/users", (req, res) => {
   const data = req.body;
 
   db.collection("data")
     .doc("6IWWfXYYe2jqsUCvQInA")
     .update({
-      Lists: firebase.firestore.FieldValue.arrayUnion(data)
-    })
+      Lists: firebase.firestore.FieldValue.arrayUnion(data),
+    });
 
-    res.send(data)
-    
+  res.send(data);
 });
 
 app.post("/deleteuser", (req, res) => {
@@ -67,11 +75,10 @@ app.post("/deleteuser", (req, res) => {
   db.collection("data")
     .doc("6IWWfXYYe2jqsUCvQInA")
     .update({
-      Lists: firebase.firestore.FieldValue.arrayRemove(data)
+      Lists: firebase.firestore.FieldValue.arrayRemove(data),
     });
 
-    res.send(data)
-    
+  res.send(data);
 });
 
 app.listen(port, () => {
