@@ -58,16 +58,17 @@ app.post("/chart", (req, res) => {
 
 app.post("/update", (req, res) => {
   const data = req.body;
-  database.ref("Table").update({
-    name: data.name,
-    email: data.email,
-    surname: data.surname,
-    companyName: data.companyName,
-    role: data.role,
-    forecast: data.forecast,
-    recentActivity: data.recentActivity,
-  });
-  res.send(data);
+  let newPostKey = firebase.database().ref("Table").child().push().key;
+  // database.ref("Table").update({
+  //   name: data.name,
+  //   email: data.email,
+  //   surname: data.surname,
+  //   companyName: data.companyName,
+  //   role: data.role,
+  //   forecast: data.forecast,
+  //   recentActivity: data.recentActivity,
+  // });
+  res.send(newPostKey);
 });
 
 app.listen(port, () => {
