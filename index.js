@@ -66,7 +66,7 @@ app.post("/update", (req, res) => {
    });
 
   setTimeout(() => {
-    let newPostKey = keys.length + 1
+    let newPostKey = (keys.length - 1) + 1
     database.ref("Table/" + newPostKey).update({
       name: data.name,
       email: data.email,
