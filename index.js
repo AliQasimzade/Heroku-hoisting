@@ -63,17 +63,18 @@ app.post("/update", (req, res) => {
     keys.push(Number(snap.key));
   });
 
-
-  database.ref("Table/" + keys.length + 1).update({
-    name: data.name,
-    email: data.email,
-    surname: data.surname,
-    companyName: data.companyName,
-    role: data.role,
-    forecast: data.forecast,
-    recentActivity: data.recentActivity,
-  });
-  res.send(`The result is ${keys.length}`);
+  setTimeout(() => {
+    database.ref("Table/" + keys.length + 1).update({
+      name: data.name,
+      email: data.email,
+      surname: data.surname,
+      companyName: data.companyName,
+      role: data.role,
+      forecast: data.forecast,
+      recentActivity: data.recentActivity,
+    });
+    res.send(`The result is ${keys.length}`);
+  }, 200);
 });
 
 app.listen(port, () => {
