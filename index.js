@@ -65,15 +65,17 @@ app.post("/update", (req, res) => {
       
     });
   });
-  // database.ref("Table").update({
-  //   name: data.name,
-  //   email: data.email,
-  //   surname: data.surname,
-  //   companyName: data.companyName,
-  //   role: data.role,
-  //   forecast: data.forecast,
-  //   recentActivity: data.recentActivity,
-  // });
+  keys = [...keys, keys.length + 1]
+  let newPostKey = keys[length]
+  database.ref("Table/" + newPostKey).update({
+    name: data.name,
+    email: data.email,
+    surname: data.surname,
+    companyName: data.companyName,
+    role: data.role,
+    forecast: data.forecast,
+    recentActivity: data.recentActivity,
+  });
   res.send(keys);
 });
 
