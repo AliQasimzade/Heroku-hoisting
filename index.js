@@ -57,17 +57,22 @@ app.post("/chart", (req, res) => {
 
 app.post("/update", (req, res) => {
   const data = req.body;
-
-  database.ref("Table").child().update({
-    name: data.name,
-    email: data.email,
-    surname: data.surname,
-    companyName: data.companyName,
-    role: data.role,
-    forecast:data.forecast,
-    recentActivity: data.recentActivity,
+  let keys = []
+  database.ref("Table").on("value", (snap) => {
+     snap.forEach(function (childsnap) {
+     keys.push(Number(childsnap.key)); 
+    });
   });
- res.send(data)
+  // database.ref("Table").update({
+  //   name: data.name,
+  //   email: data.email,
+  //   surname: data.surname,
+  //   companyName: data.companyName,
+  //   role: data.role,
+  //   forecast:data.forecast,
+  //   recentActivity: data.recentActivity,
+  // });
+ res.send(keys)
 });
 
 app.listen(port, () => {
