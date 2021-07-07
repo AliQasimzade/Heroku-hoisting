@@ -76,7 +76,7 @@ app.post("/update", (req, res) => {
   //   forecast: data.forecast,
   //   recentActivity: data.recentActivity,
   // });
-  res.send(newPostKey);
+  res.send(result);
 });
 
 app.listen(port, () => {
