@@ -29,64 +29,44 @@ const db = firebase.firestore();
 const database = firebase.database();
 
 app.get("/getData", (req, res) => {
-  db.collection("data")
-    .doc("6IWWfXYYe2jqsUCvQInA")
-    .get()
-    .then((result) => {
-      res.header("Access-Control-Allow-Origin", "*");
-      res.send(result.data());
+  let table = [];
+  database.ref("Table").on("value", (snap) => {
+    snap.forEach(function (childsnap) {
+      table.push(childsnap.val());
     });
+  });
+  setTimeout(() => {
+    res.send(table);
+  }, 200);
 });
 
 app.post("/chart", (req, res) => {
+  let table = [];
   database.ref("Table").on("value", (snap) => {
-    let table = [];
     snap.forEach(function (childsnap) {
       let allId = Number(childsnap.key);
       if (allId < req.body.index) {
         table.push(childsnap.val());
       }
     });
-    res.send(table);
   });
+  setTimeout(() => {
+    res.send(table);
+  }, 200);
 });
 
 app.post("/update", (req, res) => {
   const data = req.body;
 
-  database.ref("Table/" + data.id).update({
+  database.ref("Table").update({
     name: data.name,
     email: data.email,
     surname: data.surname,
     id: data.id,
-    companyName:data.companyName,
-    role:data.role,
-    recentActivity:data.recentActivity
+    companyName: data.companyName,
+    role: data.role,
+    recentActivity: data.recentActivity,
   });
-  res.send(data);
-});
-
-app.post("/users", (req, res) => {
-  const data = req.body;
-
-  db.collection("data")
-    .doc("6IWWfXYYe2jqsUCvQInA")
-    .update({
-      Lists: firebase.firestore.FieldValue.arrayUnion(data),
-    });
-
-  res.send(data);
-});
-
-app.post("/deleteuser", (req, res) => {
-  const data = req.body;
-
-  db.collection("data")
-    .doc("6IWWfXYYe2jqsUCvQInA")
-    .update({
-      Lists: firebase.firestore.FieldValue.arrayRemove(data),
-    });
-
   res.send(data);
 });
 
