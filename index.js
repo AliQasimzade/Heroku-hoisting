@@ -78,7 +78,15 @@ app.post("/update", (req, res) => {
     res.send(`The result is ${keys.length}`);
   }, 200);
 });
-
+app.delete("/deleteuser", (req, res) => {
+  const data = req.body;
+  db.collection("data")
+    .doc("6IWWfXYYe2jqsUCvQInA")
+    .update({
+      Lists: firebase.firestore.FieldValue.arrayRemove(data),
+    });
+  res.send(data);
+});
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
