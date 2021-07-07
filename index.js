@@ -66,7 +66,7 @@ app.post("/update", (req, res) => {
 
   let result = [...keys, keys.length + 1];
 
-  let newPostKey = result[result.length];
+  let newPostKey = result.length;
   // database.ref("Table/" + newPostKey).update({
   //   name: data.name,
   //   email: data.email,
