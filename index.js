@@ -62,8 +62,9 @@ app.post("/update", (req, res) => {
   database.ref("Table").on("value", (snap) => {
     keys.push(Number(snap.key));
   });
-  let result = [...keys, keys.length + 1];
-  database.ref("Table/" + result.length).update({
+
+
+  database.ref("Table/" + keys.length + 1).update({
     name: data.name,
     email: data.email,
     surname: data.surname,
@@ -72,7 +73,7 @@ app.post("/update", (req, res) => {
     forecast: data.forecast,
     recentActivity: data.recentActivity,
   });
-  res.send(`The result is ${result.length}`);
+  res.send(`The result is ${keys.length}`);
 });
 
 app.listen(port, () => {
