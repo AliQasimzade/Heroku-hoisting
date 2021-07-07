@@ -39,24 +39,33 @@ app.get("/getData", (req, res) => {
 });
 
 app.post("/chart", (req, res) => {
-  let table = [];
-  database.ref("Sidebar").on("value", function (snapshot) {
-    snapshot.forEach((item) => {
-      if (item <= req.index) {
-        table.push(item.val());
+  database.ref("Table").on("value", (snap) => {
+    let table = [];
+    snap.forEach(function (childsnap) {
+      let allId = Number(childsnap.key);
+      if (allId < req.body.index) {
+        table.push(childsnap.val());
       }
     });
-
     res.send(table);
   });
 });
+
 app.post("/update", (req, res) => {
   const data = req.body;
-  const newPostKey = firebase.database().ref("Table").push().key;
-  const updates = {};
-  updates[newPostKey] = data;
-  firebase.database().ref().update(updates);
+
+  database.ref("Table/" + data.id).update({
+    name: data.name,
+    email: data.email,
+    surname: data.surname,
+    id: data.id,
+    companyName:data.companyName,
+    role:data.role,
+    recentActivity:data.recentActivity
+  });
+  res.send(data);
 });
+
 app.post("/users", (req, res) => {
   const data = req.body;
 
