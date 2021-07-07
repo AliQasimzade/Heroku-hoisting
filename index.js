@@ -59,9 +59,7 @@ app.post("/update", (req, res) => {
   const data = req.body;
   let keys = [];
   database.ref("Table").on("value", (snap) => {
-    snap.forEach(function (childsnap) {
-      keys.push(Number(childsnap.key));
-    });
+    keys.push(Number(snap.key));
   });
 
   let result = [...keys, keys.length + 1];
