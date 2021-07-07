@@ -57,22 +57,26 @@ app.post("/chart", (req, res) => {
 
 app.post("/update", (req, res) => {
   const data = req.body;
-  let keys = []
+  let keys = [];
   database.ref("Table").on("value", (snap) => {
-     snap.forEach(function (childsnap) {
-     keys.push(Number(childsnap.key)); 
+    snap.forEach(function (childsnap) {
+      keys.push(Number(childsnap.key));
     });
   });
-  // database.ref("Table").update({
-  //   name: data.name,
-  //   email: data.email,
-  //   surname: data.surname,
-  //   companyName: data.companyName,
-  //   role: data.role,
-  //   forecast:data.forecast,
-  //   recentActivity: data.recentActivity,
-  // });
- res.send(keys)
+
+  keys = [...keys, keys.length + 1];
+  
+  let newPostKey = keys[length];
+  database.ref("Table/" + newPostKey).update({
+    name: data.name,
+    email: data.email,
+    surname: data.surname,
+    companyName: data.companyName,
+    role: data.role,
+    forecast: data.forecast,
+    recentActivity: data.recentActivity,
+  });
+  res.send(keys);
 });
 
 app.listen(port, () => {
