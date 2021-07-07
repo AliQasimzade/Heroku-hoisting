@@ -57,7 +57,7 @@ app.post("/chart", (req, res) => {
 
 app.post("/update", (req, res) => {
   const data = req.body;
-  let newPostKey = firebase.database().ref("Table").length;
+  let newPostKey = firebase.database().ref("Table").on("value");
   database.ref("Table").update({
     name: data.name,
     email: data.email,
