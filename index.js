@@ -78,7 +78,7 @@ app.post("/update", (req, res) => {
     res.send(`The result is ${keys.length}`);
   }, 200);
 });
-app.delete("/deleteuser", (req, res) => {
+app.post("/deleteuser", (req, res) => {
   const data = req.body;
   db.collection("data")
     .doc("6IWWfXYYe2jqsUCvQInA")
