@@ -65,15 +65,15 @@ app.post("/update", (req, res) => {
   });
 
   let result = [...keys, keys.length + 1];
-  // database.ref("Table/" + newPostKey).update({
-  //   name: data.name,
-  //   email: data.email,
-  //   surname: data.surname,
-  //   companyName: data.companyName,
-  //   role: data.role,
-  //   forecast: data.forecast,
-  //   recentActivity: data.recentActivity,
-  // });
+  database.ref("Table/" + result.length).update({
+    name: data.name,
+    email: data.email,
+    surname: data.surname,
+    companyName: data.companyName,
+    role: data.role,
+    forecast: data.forecast,
+    recentActivity: data.recentActivity,
+  });
   res.send(`The result is ${result.length}`);
 });
 
