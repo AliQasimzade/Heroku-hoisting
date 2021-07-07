@@ -65,8 +65,6 @@ app.post("/update", (req, res) => {
   });
 
   let result = [...keys, keys.length + 1];
-
-  let newPostKey = result.length;
   // database.ref("Table/" + newPostKey).update({
   //   name: data.name,
   //   email: data.email,
@@ -76,7 +74,7 @@ app.post("/update", (req, res) => {
   //   forecast: data.forecast,
   //   recentActivity: data.recentActivity,
   // });
-  res.send(result);
+  res.send(result.length);
 });
 
 app.listen(port, () => {
