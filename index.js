@@ -65,8 +65,7 @@ app.post("/update", (req, res) => {
       
     });
   });
-  keys = [...keys, keys.length + 1]
-  let newPostKey = keys[length]
+  let result = [...keys, keys.length + 1]
   // database.ref("Table/" + newPostKey).update({
   //   name: data.name,
   //   email: data.email,
@@ -76,7 +75,7 @@ app.post("/update", (req, res) => {
   //   forecast: data.forecast,
   //   recentActivity: data.recentActivity,
   // });
-  res.send(keys);
+  res.send(result);
 });
 
 app.listen(port, () => {
