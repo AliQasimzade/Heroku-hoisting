@@ -65,17 +65,17 @@ app.post("/update", (req, res) => {
   });
 
   keys = [...keys, keys.length + 1];
-  
+
   let newPostKey = keys[length];
-  database.ref("Table/" + newPostKey).update({
-    name: data.name,
-    email: data.email,
-    surname: data.surname,
-    companyName: data.companyName,
-    role: data.role,
-    forecast: data.forecast,
-    recentActivity: data.recentActivity,
-  });
+  // database.ref("Table/" + newPostKey).update({
+  //   name: data.name,
+  //   email: data.email,
+  //   surname: data.surname,
+  //   companyName: data.companyName,
+  //   role: data.role,
+  //   forecast: data.forecast,
+  //   recentActivity: data.recentActivity,
+  // });
   res.send(keys);
 });
 
