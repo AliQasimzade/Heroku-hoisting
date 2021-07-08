@@ -90,7 +90,16 @@ app.post("/edituser", (req, res) => {
     recentActivity:req.body.recentActivity,
     companyName:req.body.companyName
   })
+
+  res.send(index)
 })
+
+app.delete("/deleteuser", (req, res) => {
+  const index = req.body.index
+  database.ref("Table").child(index).remove()
+  res.send(index)
+})
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
