@@ -59,13 +59,13 @@ app.post("/update", (req, res) => {
   const data = req.body;
   let keys = [];
   database.ref("Table").on("value", (snap) => {
-   snap.forEach((childsnap => {
-     keys.push(childsnap.key)
-   }))
+    snap.forEach((childsnap) => {
+      keys.push(childsnap.key);
+    });
   });
 
   setTimeout(() => {
-    let newPostKey = (keys.length - 1) + 1
+    let newPostKey = keys.length - 1 + 1;
     database.ref("Table/" + newPostKey).update({
       name: data.name,
       email: data.email,
@@ -74,32 +74,26 @@ app.post("/update", (req, res) => {
       role: data.role,
       forecast: data.forecast,
       recentActivity: data.recentActivity,
+      id:data.id
     });
     res.send(`The result is ${keys.length}`);
   }, 200);
 });
 
 app.post("/edituser", (req, res) => {
-  const index = req.body.index
+  const index = req.body.index;
   database.ref("Table/" + index).update({
-    name:req.body.name,
-    surname:req.body.surname,
-    email:req.body.email,
-    role:req.body.role,
-    forecast:req.body.forecast,
-    recentActivity:req.body.recentActivity,
-    companyName:req.body.companyName
-  })
+    name: req.body.name,
+    surname: req.body.surname,
+    email: req.body.email,
+    role: req.body.role,
+    forecast: req.body.forecast,
+    recentActivity: req.body.recentActivity,
+    companyName: req.body.companyName,
+  });
 
-  res.send(index)
-})
-
-app.post("/deleteuser", (req, res) => {
-  
-  const index = Number(req.body.index)
-  database.ref("Table").child(index).remove()
-  res.send(req.body)
-})
+  res.send(index);
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
