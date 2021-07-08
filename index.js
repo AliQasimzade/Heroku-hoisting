@@ -78,15 +78,19 @@ app.post("/update", (req, res) => {
     res.send(`The result is ${keys.length}`);
   }, 200);
 });
-app.post("/deleteuser", (req, res) => {
-  const data = req.body;
-  db.collection("data")
-    .doc("6IWWfXYYe2jqsUCvQInA")
-    .update({
-      Lists: firebase.firestore.FieldValue.arrayRemove(data),
-    });
-  res.send(data);
-});
+
+app.post("/edituser", (req, res) => {
+  const index = req.body.index
+  database.ref("Table/" + index).update({
+    name:req.body.name,
+    surname:req.body.surname,
+    email:req.body.email,
+    role:req.body.role,
+    forecast:req.body.forecast,
+    recentActivity:req.body.recentActivity,
+    companyName:req.body.companyName
+  })
+})
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
