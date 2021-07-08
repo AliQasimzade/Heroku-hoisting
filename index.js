@@ -96,8 +96,8 @@ app.post("/edituser", (req, res) => {
 
 app.delete("/deleteuser", (req, res) => {
   
-  const index = Number(req.body.index)
-  database.ref("Table").child(index).remove()
+  // const index = Number(req.body.index)
+  // database.ref("Table").child(index).remove()
   res.send(req.body)
 })
 
