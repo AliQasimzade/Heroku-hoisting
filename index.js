@@ -74,14 +74,14 @@ app.post("/update", (req, res) => {
       role: data.role,
       forecast: data.forecast,
       recentActivity: data.recentActivity,
-      id:data.id
+      id: data.id,
     });
     res.send(`The result is ${keys.length}`);
   }, 200);
 });
 
 app.post("/edituser", (req, res) => {
-  const index = req.body.index;
+  const index = Number(req.body.index);
   database.ref("Table/" + index).update({
     name: req.body.name,
     surname: req.body.surname,
