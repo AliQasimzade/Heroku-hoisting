@@ -92,7 +92,7 @@ app.post("/edituser", (req, res) => {
     companyName: req.body.companyName,
   });
 
-  res.send(index);
+  res.send(req.body);
 });
 
 app.listen(port, () => {
