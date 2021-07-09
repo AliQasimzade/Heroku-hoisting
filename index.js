@@ -81,16 +81,15 @@ app.post("/update", (req, res) => {
 });
 
 app.post("/edituser", (req, res) => {
-  // const index = Number(req.body.index);
-  // database.ref("Table/" + index).update({
-  //   name: req.body.name,
-  //   surname: req.body.surname,
-  //   email: req.body.email,
-  //   role: req.body.role,
-  //   forecast: req.body.forecast,
-  //   recentActivity: req.body.recentActivity,
-  //   companyName: req.body.companyName,
-  // });
+  database.ref("Table/" + req.body.index).update({
+    name: req.body.name,
+    surname: req.body.surname,
+    email: req.body.email,
+    role: req.body.role,
+    forecast: req.body.forecast,
+    recentActivity: req.body.recentActivity,
+    companyName: req.body.companyName,
+  });
 
   res.send(req.body);
 });
