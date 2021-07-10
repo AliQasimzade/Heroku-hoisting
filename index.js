@@ -89,6 +89,7 @@ app.post("/edituser", (req, res) => {
     forecast: req.body.forecast,
     recentActivity: req.body.recentActivity,
     companyName: req.body.companyName,
+    id:req.body.index
   });
 
   res.send(req.body);
