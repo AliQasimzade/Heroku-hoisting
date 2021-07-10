@@ -92,12 +92,14 @@ app.post("/edituser", (req, res) => {
     id: req.body.index,
   });
 
-  app.delete("/deleteuser", (req, res) => {
-    const id = Number(req.body.id);
-    database.ref("Table/" + id).remove();
-    res.send(id)
-  });
+  res.send(req.body);
+});
 
+app.delete("/deleteuser", (req, res) => {
+  const id = Number(req.body.id);
+  database.ref("Table/" + id).remove();
+  res.send(id)
+});
  
 
 app.listen(port, () => {
