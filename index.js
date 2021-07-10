@@ -97,7 +97,7 @@ app.post("/edituser", (req, res) => {
 
 app.delete("/deleteuser", (req, res) => {
   const id = Number(req.body.id);
-  database.ref("Table/" + id).remove();
+  // database.ref("Table/" + id).remove();
   res.send(id)
 });
  
