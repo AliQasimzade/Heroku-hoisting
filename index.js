@@ -89,12 +89,13 @@ app.post("/edituser", (req, res) => {
     forecast: req.body.forecast,
     recentActivity: req.body.recentActivity,
     companyName: req.body.companyName,
-    id:req.body.index
+    id: req.body.index,
   });
 
   app.delete("/deleteuser", (req, res) => {
-    database.ref("Table/" + req.body.id).remove()
-  })
+    const id = Number(req.body.id);
+    database.ref("Table/" + req.body.id).remove();
+  });
 
   res.send(req.body);
 });
