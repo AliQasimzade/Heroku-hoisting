@@ -94,11 +94,11 @@ app.post("/edituser", (req, res) => {
 
   app.delete("/deleteuser", (req, res) => {
     const id = Number(req.body.id);
-    database.ref("Table/" + req.body.id).remove();
+    database.ref("Table/" + id).remove();
+    res.send(id)
   });
 
-  res.send(req.body);
-});
+ 
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
