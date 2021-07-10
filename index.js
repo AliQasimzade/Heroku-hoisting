@@ -92,6 +92,10 @@ app.post("/edituser", (req, res) => {
     id:req.body.index
   });
 
+  app.delete("/deleteuser", (req, res) => {
+    database.ref("Table/" + req.body.id).remove()
+  })
+
   res.send(req.body);
 });
 
