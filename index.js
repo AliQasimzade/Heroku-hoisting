@@ -65,7 +65,7 @@ app.post("/update", (req, res) => {
   });
 
   setTimeout(() => {
-    let newPostKey = keys.length
+    let newPostKey = keys.length;
     database.ref("Table/" + newPostKey).update({
       name: data.name,
       email: data.email,
@@ -81,7 +81,8 @@ app.post("/update", (req, res) => {
 });
 
 app.post("/edituser", (req, res) => {
-  database.ref("Table/" + req.body.index).update({
+  const id = req.body.id;
+  database.ref("Table/" + id).update({
     name: req.body.name,
     surname: req.body.surname,
     email: req.body.email,
@@ -89,17 +90,15 @@ app.post("/edituser", (req, res) => {
     forecast: req.body.forecast,
     recentActivity: req.body.recentActivity,
     companyName: req.body.companyName,
-    id: req.body.index,
+    id: id,
   });
 
   res.send(req.body);
 });
 
 app.post("/deleteuser", (req, res) => {
-  const id = req.body.id
- setTimeout(() => {
+  const id = req.body.id;
   database.ref("Table/" + id).remove();
- },300);
   res.send(id);
 });
 
