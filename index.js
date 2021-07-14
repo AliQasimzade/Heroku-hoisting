@@ -4,6 +4,7 @@ const firebase = require("firebase");
 const port = process.env.PORT || 3000;
 
 require("firebase/database");
+require("firebase/storage");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -97,6 +98,15 @@ app.post("/deleteuser", (req, res) => {
   const id = req.body.id;
   database.ref("Table/" + id).remove();
   res.send("Deleted user");
+});
+
+app.post("/selectImage", (req, res) => {
+  firebase
+    .storage()
+    .ref()
+    .child(req.name)
+    .put(req.file)
+    .then((snap) => snap.ref.getDownloadURL().then((url) => res.send(url)));
 });
 
 app.listen(port, () => {
