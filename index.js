@@ -3,7 +3,6 @@ const app = express();
 const firebase = require("firebase");
 const port = process.env.PORT || 3000;
 
-require("firebase/firestore");
 require("firebase/database");
 
 app.use(express.urlencoded({ extended: false }));
@@ -23,8 +22,6 @@ var firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-
-const db = firebase.firestore();
 
 const database = firebase.database();
 
