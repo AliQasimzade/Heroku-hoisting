@@ -104,8 +104,8 @@ app.post("/selectImage", (req, res) => {
   firebase
     .storage()
     .ref()
-    .child(req.name)
-    .put(req.file)
+    .child(req.body.name)
+    .put(req.body.file)
     .then((snap) => snap.ref.getDownloadURL().then((url) => res.send(url)));
 });
 
