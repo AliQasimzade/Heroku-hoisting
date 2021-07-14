@@ -101,17 +101,9 @@ app.post("/deleteuser", (req, res) => {
 });
 
 app.post("/selectImage", (req, res) => {
-  firebase
-    .storage()
-    .ref()
-    .child(req.body.name)
-    .put(req.body.file)
-    .then((snap) =>
-      snap.ref.getDownloadURL().then((url) => {
-        res.header("Access-Control-Allow-Origin", "*");
-        res.send(url);
-      })
-    );
+  firebase.storage().ref().child(req.body.name).put(req.body.file);
+
+  res.send(req.body);
 });
 
 app.listen(port, () => {
