@@ -101,7 +101,7 @@ app.post("/deleteuser", (req, res) => {
 });
 
 app.post("/selectImage", (req, res) => {
-  firebase.storage().ref().child(req.body.name).put(req.body);
+  // firebase.storage().ref().child(req.body.name).put(req.body);
 
   res.send(req.body);
 });
