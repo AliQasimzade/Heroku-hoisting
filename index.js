@@ -106,7 +106,12 @@ app.post("/selectImage", (req, res) => {
     .ref()
     .child(req.body.name)
     .put(req.body.file)
-    .then((snap) => snap.ref.getDownloadURL().then((url) => res.send(url)));
+    .then((snap) =>
+      snap.ref.getDownloadURL().then((url) => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.send(url);
+      })
+    );
 });
 
 app.listen(port, () => {
