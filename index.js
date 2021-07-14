@@ -102,7 +102,7 @@ app.post("/deleteuser", (req, res) => {
 
 app.post("/selectImage", (req, res) => {
   // firebase.storage().ref().child(req.body.name).put(req.body);
-
+  res.header("Access-Control-Allow-Origin", "*");
   res.send(req.body);
 });
 
