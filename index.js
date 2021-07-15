@@ -3,8 +3,9 @@ const app = express();
 const firebase = require("firebase");
 const port = process.env.PORT || 3000;
 
-require("firebase/database");
+require("firebase/app");
 require("firebase/storage");
+require("firebase/database");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -24,14 +25,13 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+const storage = firebase.storage();
 const database = firebase.database();
 
 app.get("/getData", (req, res) => {
   let table = [];
   database.ref("Table").on("value", (snap) => {
-    snap.forEach(function (childsnap) {
-      table.push(childsnap.val());
-    });
+    table.push(snap.val());
   });
   setTimeout(() => {
     res.send(table);
@@ -101,7 +101,11 @@ app.post("/deleteuser", (req, res) => {
 });
 
 app.post("/selectImage", (req, res) => {
-  firebase.storage().ref().child(req.body.name).put(req.body);
+  storage
+    .ref()
+    .child(req.body.name)
+    .put(req.body)
+    .then((snap) => snap.ref.getDownloadURL().then((url) => console.log(url)));
   res.header("Access-Control-Allow-Origin", "*");
   res.send(req.body);
 });
