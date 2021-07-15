@@ -91,7 +91,7 @@ app.post("/edituser", (req, res) => {
     imageurl:req.body.imageurl
   });
 
-  res.send(req.body);
+  res.send(req.body.imageurl);
 });
 
 app.post("/deleteuser", (req, res) => {
