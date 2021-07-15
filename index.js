@@ -4,7 +4,6 @@ const firebase = require("firebase");
 const port = process.env.PORT || 3000;
 
 require("firebase/app");
-require("firebase/storage");
 require("firebase/database");
 
 app.use(express.urlencoded({ extended: false }));
@@ -25,7 +24,6 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-const storage = firebase.storage();
 const database = firebase.database();
 
 app.get("/getData", (req, res) => {
@@ -73,6 +71,7 @@ app.post("/update", (req, res) => {
       forecast: data.forecast,
       recentActivity: data.recentActivity,
       id: data.id,
+      imageurl:data.imageurl
     });
     res.send(`The result is ${keys.length}`);
   }, 200);
@@ -98,16 +97,6 @@ app.post("/deleteuser", (req, res) => {
   const id = req.body.id;
   database.ref("Table/" + id).remove();
   res.send("Deleted user");
-});
-
-app.post("/selectImage", (req, res) => {
-  storage
-    .ref()
-    .child(req.body.file.name)
-    .put(req.body.file)
-    .then((snap) => snap.ref.getDownloadURL().then((url) => console.log(url)));
-  res.header("Access-Control-Allow-Origin", "*");
-  res.send(req.body);
 });
 
 app.listen(port, () => {
