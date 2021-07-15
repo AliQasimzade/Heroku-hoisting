@@ -88,6 +88,7 @@ app.post("/edituser", (req, res) => {
     recentActivity: req.body.recentActivity,
     companyName: req.body.companyName,
     id: id,
+    imageurl:req.body.imageurl
   });
 
   res.send(req.body);
