@@ -103,8 +103,8 @@ app.post("/deleteuser", (req, res) => {
 app.post("/selectImage", (req, res) => {
   storage
     .ref()
-    .child(req.body.name)
-    .put(req.body)
+    .child(req.body.file.name)
+    .put(req.body.file)
     .then((snap) => snap.ref.getDownloadURL().then((url) => console.log(url)));
   res.header("Access-Control-Allow-Origin", "*");
   res.send(req.body);
